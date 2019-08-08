@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,500,700&display=swap');
+
+.container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: Roboto Mono, sans-serif;
+    padding: 120px;
+}
+
+#info {
+    width: 200px;
+    flex: auto;
+    flex-grow: 1;
+}
+
+.title h1 {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.subtitle h3 {
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.sub-subtitle {
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    line-height: 2.5em;
+    margin-bottom: 15px;
+}
+
+.social {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.nav {
+    margin-bottom: 15px;
+}
+
+.nav a {
+    color: rgba(48, 56, 68, 1);
+}
+
+.nav a:hover {
+    color: rgba(0, 126, 229, 1);
+}
+
+a i {
+    color: rgba(48, 56, 68, 1);
+}
+
+a i:hover {
+    color: rgba(0, 126, 229, 1);
+}
