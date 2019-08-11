@@ -1,3 +1,5 @@
+use personal_website;
+
 fn main() {
-    println!("Hello, world!");
+    personal_website::rocket().launch();
 }

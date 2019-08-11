@@ -16,13 +16,13 @@
     padding: 120px;
 }
 
-#info {
-    width: 200px;
+.info {
+    width: 50%;
     flex: auto;
     flex-grow: 1;
 }
 
-#animation {
+.animation {
     padding: 50px;
     flex: auto;
     flex-grow: 4;
