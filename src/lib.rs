@@ -22,13 +22,17 @@ fn not_found() -> JsonValue {
 
 #[get("/")]
 fn index() -> Option<NamedFile> {
-    //File::open(Path::new("public/html/index.html")).unwrap()
     NamedFile::open(Path::new("static/html/index.html")).ok()
+}
+
+#[get("/blog")]
+fn blog() -> Option<NamedFile> {
+    NamedFile::open(Path::new("static/html/under-construction.html")).ok()
 }
 
 pub fn rocket() -> rocket::Rocket {
     rocket::ignite()
-        .mount("/", routes![index])
+        .mount("/", routes![index, blog])
         .mount("/static", StaticFiles::from("static"))
         .register(catchers![not_found])
 }
