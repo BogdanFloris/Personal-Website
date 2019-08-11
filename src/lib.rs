@@ -15,8 +15,8 @@ use rocket_contrib::json::JsonValue;
 #[catch(404)]
 fn not_found() -> JsonValue {
     json!({
-        "status": "error",
-        "reason": "Resource was not found."
+        "status": "404",
+        "message": "Resource was not found."
     })
 }
 
