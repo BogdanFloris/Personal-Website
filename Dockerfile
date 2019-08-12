@@ -9,4 +9,4 @@ EXPOSE 8080
 RUN cargo build --release
 
 ENV PW_SECRET_KEY=$SECRET_KEY
-CMD ROCKET_SECRET_KEY=$PW_SECRET_KEY ./target/release/personal_website
+CMD ROCKET_SECRET_KEY=$PW_SECRET_KEY cargo run --release
