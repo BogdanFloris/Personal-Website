@@ -30,9 +30,9 @@ fn read_file_content(path: &str) -> Vec<u8> {
 
 #[test]
 fn test_index_html() {
-    test_query_file("/", "public/html/index.html", Status::Ok);
-    test_query_file("/?v=1", "public/html/index.html", Status::Ok);
-    test_query_file("/?this=should&be=ignored", "public/html/index.html", Status::Ok);
+    test_query_file("/", "static/html/index.html", Status::Ok);
+    test_query_file("/?v=1", "static/html/index.html", Status::Ok);
+    test_query_file("/?this=should&be=ignored", "static/html/index.html", Status::Ok);
 }
 
 #[test]
