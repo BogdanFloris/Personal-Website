@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"bogdanfloris-com/pkg/accessor"
+	"bogdanfloris-com/pkg/logging"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	logging.InitLoggers()
+	acc := accessor.GetAccessor()
+	defer acc.Close()
+
+	acc.Test()
 }
