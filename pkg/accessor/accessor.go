@@ -2,7 +2,10 @@ package accessor
 
 import (
 	"bogdanfloris-com/pkg/logging"
+	"bogdanfloris-com/pkg/models"
+	"bogdanfloris-com/pkg/utils"
 	"context"
+	uuid2 "github.com/google/uuid"
 	"github.com/jackc/pgx/v4"
 	"os"
 )
@@ -30,6 +33,34 @@ func NewPgAccessor() *PgAccessor {
 
 	accessor := &PgAccessor{pgConn}
 	return accessor
+}
+
+func (accessor *PgAccessor) AddUser(username string, password string) (string, error) {
+	// Hash Password
+	hash, err := utils.HashPassword(password)
+	if err != nil {
+		return "", err
+	}
+	// Generate uuid
+	uuid := uuid2.NewString()
+	// Sql statement
+	sqlStatement := `
+INSERT INTO "user" (user_id, username, password_hash, created_on)
+VALUES ($1, $2, $3, NOW())`
+	_, err = accessor.conn.Exec(context.Background(), sqlStatement, uuid, username, hash)
+	return uuid, err
+}
+
+func (accessor *PgAccessor) RemoveUser(username string) error {
+	_, err := accessor.conn.Exec(context.Background(), "DELETE FROM \"user\" WHERE username=$1", username)
+	return err
+}
+
+func (accessor *PgAccessor) User(username string) (models.User, error) {
+	var user models.User
+	err := accessor.conn.QueryRow(context.Background(), "SELECT * FROM \"user\" WHERE username=$1", username).Scan(
+		&user.Uuid, &user.Username, &user.PasswordHash, &user.CreatedOn, &user.LastLogin)
+	return user, err
 }
 
 func (accessor *PgAccessor) Close() {
