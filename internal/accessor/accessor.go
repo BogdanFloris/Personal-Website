@@ -1,9 +1,9 @@
 package accessor
 
 import (
-	"bogdanfloris-com/pkg/logging"
-	"bogdanfloris-com/pkg/models"
-	"bogdanfloris-com/pkg/utils"
+	"bogdanfloris-com/internal/logging"
+	"bogdanfloris-com/internal/models"
+	"bogdanfloris-com/internal/utils"
 	"context"
 	uuid2 "github.com/google/uuid"
 	"github.com/jackc/pgx/v4"

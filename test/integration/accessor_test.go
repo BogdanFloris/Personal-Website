@@ -1,9 +1,9 @@
 package accessor
 
 import (
-	"bogdanfloris-com/pkg/accessor"
-	"bogdanfloris-com/pkg/logging"
-	"bogdanfloris-com/pkg/utils"
+	"bogdanfloris-com/internal/accessor"
+	"bogdanfloris-com/internal/logging"
+	"bogdanfloris-com/internal/utils"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
