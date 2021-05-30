@@ -32,4 +32,4 @@ async function populate_users() {
     await db_pool.end();
 }
 
-populate_users().then(r => console.log(`Successfully seeded the users table.`));
+populate_users().then(_ => console.log(`Successfully seeded the users table.`));
