@@ -1,0 +1,19 @@
+{
+  "name": "bogdanfloris-com",
+  "version": "0.0.1",
+  "description": "Bogdan Floris Personal Website",
+  "main": "index.js",
+  "repository": "git@github.com:BogdanFloris/bogdanfloris-com.git",
+  "author": "Bogdan Floris <bogdan.floris@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "web-dev": "cd web && yarn dev"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "faker": "^5.5.3",
+    "lodash": "^4.17.21",
+    "pg": "^8.6.0"
+  }
+}
