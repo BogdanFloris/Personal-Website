@@ -1,3 +1,5 @@
+begin;
+
 create table if not exists post
 (
     post_id      uuid primary key,
@@ -10,3 +12,8 @@ create table if not exists post
     published_at timestamp with time zone,
     foreign key (author) references "user" (user_id)
 );
+
+create index if not exists "post_slug_index" on "post"("slug");
+create index if not exists "post_title_index" on "post"("title");
+
+commit;
