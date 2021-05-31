@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 func NewLogger(debug bool, logFilePath string) *zap.SugaredLogger {
@@ -22,11 +23,11 @@ func NewLogger(debug bool, logFilePath string) *zap.SugaredLogger {
 	if logFilePath == "" {
 		log.Fatal("Please set BF_LOG_PATH environment variable.")
 	} else {
-		// TODO: add timestamp
 		logFilePath, err := filepath.Abs(logFilePath)
 		if err != nil {
 			log.Fatal(err)
 		}
+		logFilePath += "." + time.Now().Format("20060102150405")
 		writer, err = os.Create(logFilePath)
 		if err != nil {
 			log.Fatal(err)
