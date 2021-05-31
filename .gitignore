@@ -29,4 +29,8 @@ config/.env
 # Javascript
 node_modules/
 
+# Secure files
+config/server.crt
+config/server.key
+
 # End of https://www.toptal.com/developers/gitignore/api/go

@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-private_key_out="configs/server.key"
-cert_key_out="configs/server.crt"
+private_key_out="config/server.key"
+cert_key_out="config/server.crt"
 
 echo "==> Generating RSA private key"
 openssl genrsa -out $private_key_out 2048
