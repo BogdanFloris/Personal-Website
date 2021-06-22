@@ -2,11 +2,22 @@ package jwt
 
 import (
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
+	jwtgo "github.com/dgrijalva/jwt-go"
+	"github.com/gofiber/fiber/v2/utils"
+	"time"
 )
 
-func GenerateToken(claims jwt.Claims, secretKey string) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+func generateJwt(claims jwtgo.MapClaims, expiration time.Duration, secret string) (string, error) {
+	uuid := utils.UUID()
+	claims["uuid"] = uuid
+	claims["iat"] = time.Now().Unix()
+	claims["exp"] = expiration
+
+	return generateToken(claims, secret)
+}
+
+func generateToken(claims jwtgo.Claims, secretKey string) (string, error) {
+	token := jwtgo.NewWithClaims(jwtgo.SigningMethodHS256, claims)
 	tokenString, err := token.SignedString([]byte(secretKey))
 	if err != nil {
 		return "", err
@@ -14,9 +25,9 @@ func GenerateToken(claims jwt.Claims, secretKey string) (string, error) {
 	return tokenString, nil
 }
 
-func VerifyToken(token string, secretKey string) (*jwt.Token, jwt.MapClaims, error) {
-	parsedToken, err := jwt.Parse(token, func(t *jwt.Token) (interface{}, error) {
-		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+func verifyToken(token string, secretKey string) (*jwtgo.Token, jwtgo.MapClaims, error) {
+	parsedToken, err := jwtgo.Parse(token, func(t *jwtgo.Token) (interface{}, error) {
+		if _, ok := t.Method.(*jwtgo.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", t.Header["alg"])
 		}
 		return []byte(secretKey), nil
@@ -24,5 +35,5 @@ func VerifyToken(token string, secretKey string) (*jwt.Token, jwt.MapClaims, err
 	if err != nil {
 		return nil, nil, err
 	}
-	return parsedToken, parsedToken.Claims.(jwt.MapClaims), nil
+	return parsedToken, parsedToken.Claims.(jwtgo.MapClaims), nil
 }
